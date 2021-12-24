@@ -21,9 +21,6 @@ import com.android.fake.flo.fakeflo.viewmodel.LyricViewModel
 class LyricView(context: Context, attrs: AttributeSet? = null) : LinearLayout(context, attrs) {
     companion object {
         private const val TAG = "LyricView"
-
-        private const val VIEW_TYPE_ITEM = 1
-        private const val WHAT_SEND = 1000
     }
 
     interface CloseButtonClickListener {
