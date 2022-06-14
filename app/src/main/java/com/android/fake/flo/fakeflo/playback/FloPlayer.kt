@@ -129,11 +129,11 @@ class FloPlayer(private val context: Context) {
         return when (Util.inferContentType(uri)) {
             C.TYPE_HLS -> {
                 Log.d(TAG, "TYPE_HLS")
-                HlsMediaSource.Factory(buildDataSourceFactory()).createMediaSource(uri)
+                HlsMediaSource.Factory(buildDataSourceFactory()).createMediaSource(MediaItem.fromUri(uri))
             }
             C.TYPE_OTHER -> {
                 Log.d(TAG, "TYPE_OTHER")
-                ProgressiveMediaSource.Factory(buildDataSourceFactory()).createMediaSource(uri)
+                ProgressiveMediaSource.Factory(buildDataSourceFactory()).createMediaSource(MediaItem.fromUri(uri))
             }
             else -> {
                 Log.d(TAG, "DASH, SS are not supported.")
