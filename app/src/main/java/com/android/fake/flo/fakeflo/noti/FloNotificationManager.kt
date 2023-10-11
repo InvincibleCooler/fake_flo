@@ -11,7 +11,11 @@ import com.android.fake.flo.fakeflo.R
 import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.PlayerNotificationManager
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 const val NOTIFICATION_CHANNEL_ID = "com.android.fake.flo.fakeflo.NOW_PLAYING"
 const val NOTIFICATION_ID = 10000
@@ -64,7 +68,7 @@ class FloNotificationManager(private val context: Context, sessionToken: MediaSe
 
         override fun createCurrentContentIntent(player: Player): PendingIntent? {
             val launchActivityIntent = Intent(context, MainActivity::class.java)
-            return PendingIntent.getActivity(context, 0, launchActivityIntent, 0)
+            return PendingIntent.getActivity(context, 0, launchActivityIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         }
 
         override fun getCurrentContentTitle(player: Player): String {
